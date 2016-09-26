@@ -21,7 +21,15 @@ loop:
 	movl	$1,	%edx
 	int	$0x80
 
+
 	jmp 	loop
 
-#. = _start + 510
-#.byte		0x55, 0xAA
+clear:
+	movl	$6,	%eax
+	movl	$0,	%ebx
+	int	$0x10
+
+	jmp 	loop
+
+. = _start + 510
+.byte		0x55, 0xAA
