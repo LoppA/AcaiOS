@@ -3,6 +3,7 @@
 
 _start:
 .code16
+	# Resetar registradores
 	xorw	%ax, 	%ax
 	movw	%ax, 	%ds
 	movw	%ax, 	%ss
@@ -18,13 +19,14 @@ start:
 	movl	$0xB8000,	%ecx
 	movw	%ax, 		(%ecx)
 
-	cmp		$'1',		%al
-
-	je		clear
+	# if (al == '1') clear()
+	cmp	$'1',		%al
+	je	clear
 	
 jmp	_start
 
 clear:
+	# Move cursor para inicio
 	movb	$2,		%ah
 	movb	$0,		%bh
 	xorw	%dx,		%dx
@@ -32,6 +34,7 @@ clear:
 
 loop_clear:
 
+	# Coloca ' ' na tela e incrementa cursor
 	movb	$0x0E,		%ah
 	movb	$' ',		%al
 	xorw	%bx,		%bx
@@ -43,6 +46,7 @@ loop_clear:
 
 	jl	loop_clear
 
+	# Move cursor para inicio
 	movb	$2,		%ah
 	movb	$0,		%bh
 	xorw	%dx,		%dx
