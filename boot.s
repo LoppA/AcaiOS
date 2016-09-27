@@ -1,35 +1,30 @@
-.section	.data
-op:	.ascii	"1"
-
 .section	.text
 .globl		_start
-#.code16
 
-_start:	
+_start:
+.code16
+	xorw	%ax, %ax
+	movw	%ax, %ds
+	movw	%ax, %ss
+	movw	%ax, %fs
+	jmp 	start
+
+start:
 loop:
-	# Ler
-	movl	$3,	%eax
-	movl	$1,	%ebx
-	movl	$op,	%ecx
-	movl	$1,	%edx
-	int	$0x80
+	#Ler, fica no al	
+	xorw	%ax, %ax
+	int	$0x16
 	
-	# Imprimir
-	movl	$4,	%eax
-	movl	$2,	%ebx
-	movl	$op,	%ecx
-	movl	$1,	%edx
-	int	$0x80
+	movb	$0x1E, %ah
+	movl	$0xB8000, %ecx
+	movw	%ax, (%ecx)
+	
+ jmp	loop
+
+ clear:
 
 
-	jmp 	loop
-
-clear:
-	movl	$6,	%eax
-	movl	$0,	%ebx
-	int	$0x10
-
-	jmp 	loop
+ jmp	loop
 
 . = _start + 510
-.byte		0x55, 0xAA
+.byte	0x55, 0xAA

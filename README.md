@@ -1,4 +1,4 @@
 # AcaiOS
 Acai com Leite Ninho OS
 
-Oi
+Referencia	int	$0x16: http://stanislavs.org/helppc/int_16.html
