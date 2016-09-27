@@ -17,6 +17,10 @@ start:
 	movb	$0x1E, 		%ah
 	movl	$0xB8000,	%ecx
 	movw	%ax, 		(%ecx)
+
+	cmp		$'1',		%al
+
+	je		clear
 	
 jmp	_start
 
@@ -44,7 +48,7 @@ loop_clear:
 	xorw	%dx,		%dx
 	int	$0x10
 
-jmp	loop
+jmp	_start
 
 loop:	jmp	loop
 
