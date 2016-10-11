@@ -18,35 +18,44 @@ move_cursor:
 
 	ret
 
+# char esta no al
+putchar:
+	movb	$0x0E,		%ah
+	xorw	%bx,		%bx
+
+	addw	$1,		%dx
+
+	int	$0x10
+
+	ret
+
 clear:
 	# Move cursor para inicio
 	xorw	%dx,		%dx
 	call	move_cursor
 
-loop_clear:
+	loop_clear:
+		# Coloca ' ' na tela e incrementa cursor
+		movb	$' ',		%al
+		call	putchar
 
-	# Coloca ' ' na tela e incrementa cursor
-	movb	$0x0E,		%ah
-	movb	$' ',		%al
-	xorw	%bx,		%bx
-	int	$0x10
+		cmp	$2000,		%dx
 
-	addw	$1,		%dx
+		jl	loop_clear
 
-	cmp	$2000,		%dx
+		call	move_cursor
 
-	jl	loop_clear
-
-	call	move_cursor
-
-	# Move cursor para inicio
-	xorw	%dx,		%dx
-	call	move_cursor
+		# Move cursor para inicio
+		xorw	%dx,		%dx
+		call	move_cursor
 
 	ret
 
 reboot:
 	int	$0x19
+	ret
+
+ram:
 	ret
 
 start:
@@ -70,9 +79,14 @@ start:
 	je	_clear
 
 
-	# if (al == 4') clear()
+	# if (al == 4') reboot()
 #	cmp	$'4',		%al
 #	je	_reboot
+
+
+	# if (al == '5') ram()
+	cmp	$'5',		%al
+	je	_ram
 
 	
 jmp	start
@@ -84,6 +98,11 @@ _clear:
 _reboot:
 	call	clear
 	call 	reboot
+	jmp	start
+
+_ram:
+	call	clear
+	call 	ram
 	jmp	start
 
 jmp	_start
