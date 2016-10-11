@@ -29,6 +29,25 @@ putchar:
 
 	ret
 
+# ecx: ponteiro para a string
+print_str:
+
+	print_loop:
+		movb	(%ecx),	%al
+
+		# if (al != '\0') 
+		cmp	$0,		%al
+		je	prologo_print
+
+		call	putchar
+		addl	$1,	%ecx
+
+		jmp	print_loop
+
+	prologo_print:
+
+	ret
+
 clear:
 	# Move cursor para inicio
 	xorw	%dx,		%dx
@@ -56,6 +75,17 @@ reboot:
 	ret
 
 ram:
+	int	$0x12
+	movb	$'0',	%al
+	call	putchar
+	movb	$'x',	%al
+	call	putchar
+	movb	$' ',	%al
+	call	putchar
+
+	movl	$str_ram,	%ecx
+	call	print_str
+
 	ret
 
 start:
@@ -106,6 +136,8 @@ _ram:
 	jmp	start
 
 jmp	_start
+
+str_ram:	.ascii	" KB of memory avaliable on RAM"
 
 . = _start + 510
 .byte	0x55, 0xAA
