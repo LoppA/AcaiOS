@@ -256,8 +256,8 @@ start:
 	je	_conectados
 
 	# if (al == 4') reboot()
-#	cmp	$'4',		%al
-#	je	_reboot
+	cmp	$'4',		%al
+	je	_reboot
 
 	# if (al == '5') ram()
 #	cmp	$'5',		%al
