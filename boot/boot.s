@@ -214,6 +214,16 @@ ram:
 	popa
 	ret
 
+vers:
+	movl	$str_version,		%ecx
+	call	print_str
+
+	movb	$0x02,	%dh
+	movb	$0,	%dl
+	call move_cursor
+	
+	ret
+	
 start:
 	# Resetar registradores
 	xorw	%ax, 	%ax
@@ -233,6 +243,10 @@ start:
 	# if (al == '1') clear()
 	cmp	$'1',		%al
 	je	_clear
+	
+	# if (al == '2') version()
+	cmp	$'2',		%al
+	je	_version
 
 	# if (al == '3') conectados()
 	cmp	$'3',		%al
@@ -252,6 +266,11 @@ _clear:
 	call	clear
 	jmp	start
 
+_version:
+	call	clear
+	call 	vers
+	jmp start
+	
 _reboot:
 	call	clear
 	call 	reboot
@@ -279,6 +298,8 @@ jmp	_start
 
 str_ram:	.ascii	" KB of memory avaliable on RAM\0"
 hex_list:	.ascii  "0123456789ABCDEF\0"
+
+str_version:		.ascii	"AcaiOS bootloader version 1.0.1\nMade by Jorge Motokubo - Lucas Pacheco - Raul Wagner\0"
 
 str_game_adapter:	.ascii	" Game adapter: \0"
 str_internal_modem:	.ascii	" Internal modem: \0"
