@@ -234,6 +234,10 @@ start:
 	cmp	$'1',		%al
 	je	_clear
 
+	# if (al == '3') conectados()
+	cmp	$'3',		%al
+	je	_conectados
+
 	# if (al == 4') reboot()
 	cmp	$'4',		%al
 	je	_reboot
@@ -254,6 +258,12 @@ _reboot:
 
 	jmp	start
 
+_conectados:
+	call clear
+	call conectados
+
+	jmp start
+
 _ram:
 	call	clear
 	call 	ram
@@ -269,6 +279,10 @@ jmp	_start
 
 str_ram:	.ascii	" KB of memory avaliable on RAM\0"
 hex_list:	.ascii  "0123456789ABCDEF\0"
+
+str_game_adapter:	.ascii	" Game adapter: \0"
+str_internal_modem:	.ascii	" Internal modem: \0"
+str_printer_ports:	.ascii	" Printer ports: \0"
 
 . = _start + 510
 .byte	0x55, 0xAA
