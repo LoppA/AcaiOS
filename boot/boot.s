@@ -260,8 +260,8 @@ start:
 	je	_reboot
 
 	# if (al == '5') ram()
-#	cmp	$'5',		%al
-#	je	_ram
+	cmp	$'5',		%al
+	je	_ram
 	
 jmp	start
 
