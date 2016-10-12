@@ -214,6 +214,7 @@ ram:
 	popa
 	ret
 
+	#imprime a versao
 vers:
 	movl	$str_version,		%ecx
 	call	print_str
@@ -266,6 +267,7 @@ _clear:
 	call	clear
 	jmp	start
 
+	#imprime a versao
 _version:
 	call	clear
 	call 	vers
