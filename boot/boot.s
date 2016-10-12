@@ -94,9 +94,9 @@ conectados:
 	je		game_S
 	jmp		game_N
 	
-	#caso tenha ele imprime S, caso n tenha ele imprime N
+	#caso tenha ele imprime Y, caso n tenha ele imprime N
 	game_S:
-		movb	$'S',	%al
+		movb	$'Y',	%al
 		jmp game_print
 		
 	game_N:
@@ -122,7 +122,7 @@ conectados:
 	jmp		modem_N
 	
 	modem_S:
-		movb	$'S',	%al
+		movb	$'Y',	%al
 		jmp modem_print
 		
 	modem_N:
@@ -146,7 +146,7 @@ conectados:
 	jmp		printer_N
 	
 	printer_S:
-		movb	$'S',	%al
+		movb	$'Y',	%al
 		jmp printer_print
 		
 	printer_N:
