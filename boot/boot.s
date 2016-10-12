@@ -252,8 +252,8 @@ start:
 	je	_version
 
 	# if (al == '3') conectados()
-#	cmp	$'3',		%al
-#	je	_conectados
+	cmp	$'3',		%al
+	je	_conectados
 
 	# if (al == 4') reboot()
 #	cmp	$'4',		%al
