@@ -1,17 +1,62 @@
-CFLAGS= -ffreestanding -nostdinc -I./include -m32
+# Made by Iron & VVillam
 
-all:
-	as --32 $(file).s -o "$(file)".o
-	ld -m elf_i386 -nostdlib -N -Ttext 7C00 "$(file)".o -o "$(file)".elf
-	objcopy -O binary "$(file)".elf "$(file)".bin
-	qemu-system-i386 "$(file)".bin -boot a
+# NUNCA EXECUTAR COMANDO DE PEN DRIVE VIA MAKEFILE!!!!!!
+# Bootable pen drive: dd if=boot.bin of=/dev/fd0 count=1 bs=512
+# Edited by Bebe
 
+KERNELNAME=AcaiOS\ -\ GRUB\ Version\ 0.0.1 
+
+# Directories
+BLDDIR=build
+INCDIR=include
+SRCDIR=src
+OBJDIR=$(SRCDIR)/obj
+
+# Search for files
+SRC=$(wildcard $(SRCDIR)/*.c) $(wildcard $(SRCDIR)/arch/*.c)
+ASMSRC=$(wildcard $(SRCDIR)/*.s) $(wildcard $(SRCDIR)/arch/*.s)
+DEPS=$(wildcard $(INCDIR)/*.h) $(wildcard $(INCDIR)/arch/*.h)
+
+# Generate .o object files rules
+OBJ=$(foreach file, $(SRC), $(file:$(SRCDIR)/%.c=$(OBJDIR)/%.o))
+ASMOBJ=$(foreach file, $(ASMSRC), $(file:$(SRCDIR)/%.s=$(OBJDIR)/%.o))
+
+LINKERSCRIPT=linker.ld
+
+CC=gcc
+CFLAGS=-fno-stack-protector -fno-builtin -ffreestanding -nostdinc -I./$(INCDIR) -m32
+ASSEMBLER=as
+ASMFLAGS=--32
+
+
+
+# Compile .c files
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEPS)
+	@echo Building $*
+	@$(CC) -c -o $(subst arch/,, $@) $< $(CFLAGS)
+
+#Assemble .s files
+$(OBJDIR)/%.o: $(SRCDIR)/%.s
+	@echo Assembling $*
+	@$(ASSEMBLER) $< $(ASMFLAGS) -o $@
+
+#Link files into executable
+main: $(OBJ) $(ASMOBJ)
+	@echo Linking object files to executable
+	@ld -T $(LINKERSCRIPT) -m elf_i386 $(subst arch/,, $(OBJ)) $(ASMOBJ) -o $(BLDDIR)/$(KERNELNAME)
+
+
+
+# Utility directives
 clean:
-	rm ./*.bin ./*.o ./*.elf
+	@touch $(BLDDIR)/temp
+	@touch $(OBJDIR)/temp
+	rm $(BLDDIR)/*
+	rm $(OBJDIR)/*
 
-assembly:
-	as --32 "$(file)".s -o "$(file)".o
-#	ld -m elf_i386 "$(file)".o -o "$(file)"
+# Run directives
+run:
+	qemu-system-i386 --kernel $(BLDDIR)/$(KERNELNAME)
 
-c:
-	gcc -c $(file).c -o $(file).o $(CFLAGS)
+runv:
+	qemu-system-x86_64 --kernel $(BLDDIR)/$(KERNELNAME)
