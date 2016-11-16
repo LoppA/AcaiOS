@@ -1,14 +1,15 @@
 #include "vga.h"
 
 void kernel_main () {
-	int foo = 10;
+	int foo = 10, bar = 1337;
 
-//	clear_screen();
-
-//	putchar ('Q', WHITE, BLACK);
+	clear_screen();
 
 	printf ("Inteiro: \t%d\n", foo);
 	printf ("Binario: \t%b\n", foo);
+	printf ("Hexadecimal: \t%x\n\n", foo);
+
+	printf ("Inteiro: \t%d\nBinario: \t%b\nHexadecimal: \t%x\n\n", bar, bar, bar);
 
 	abort();
 }

@@ -77,6 +77,8 @@ int print_hex (int val) {
 			putchar(num + '0');
 		else
 			putchar('A' + num - 10);
+
+		rval /= 16;
 	}
 
 	return n;
