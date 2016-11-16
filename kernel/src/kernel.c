@@ -24,10 +24,10 @@ void kernel_main () {
 
 	clear_screen();
 
-	printf ("\n\n\tBem vindo ao AcaiOS!!\n");
-	printf ("\tO Sistema Operacional tao bom quanto Acai.\n");
+	printf ("\n\n\tWelcome to AcaiOS!!\n");
+	printf ("\tThe Operating System as good as Acai.\n");
 
-	printf ("\n\nRegistradores: \n");
+	printf ("\n\nRegisters \n");
 
 	printf ("\tcs: 0x%x\n\tds: 0x%x\n\tss: 0x%x\n", getCS(), getDS(), getSS());
 
