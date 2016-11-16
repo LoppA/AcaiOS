@@ -4,6 +4,8 @@
 #define SCREEN_WIDTH 80
 #define SCREEN_HEIGHT 25
 
+#include "stdint.h"
+
 enum color{
     BLACK,
 	BLUE,
@@ -21,7 +23,7 @@ enum color{
 	LIGHT_MAGENTA,
 	LIGHT_BROWN,
 	WHITE
-}
+};
 
 void set_character_color (enum color letterColor, enum color bgColor);
 void clear_screen();

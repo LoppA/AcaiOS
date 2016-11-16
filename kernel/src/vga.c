@@ -1,4 +1,4 @@
-#include <vga.h>
+#include "vga.h"
 
 uint8_t* screen_start = (uint8_t *) 0xB8000;
 int32_t pos = 0;
@@ -6,8 +6,8 @@ int32_t pos = 0;
 uint8_t characterColor = 0;
 uint16_t charac = 0;
 
-
-void set_character_color (enum color letterColor, enum color bgColor) {
+void set_character_color (enum color letterColor, enum color bgColor)
+{
     //primeira metade do byte indica a cor de fundo, segunda metade indica a cor do caracter
     bgColor = bgColor << 4;
     characterColor = letterColor | bgColor;
