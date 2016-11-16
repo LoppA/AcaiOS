@@ -26,3 +26,5 @@ enum color{
 void set_character_color (enum color letterColor, enum color bgColor);
 void clear_screen();
 void print_character (char letter, enum color letterColor, enum color bgColor);
+
+#endif
