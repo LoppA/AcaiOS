@@ -1,4 +1,4 @@
-Copyright © 2016 - Jorge Hideki Motokubo Halker (jorge.halker@usp.br), 	Lucas de Oliveira Pacheco (lucas.oliveira.pacheco@usp.br), Raul Wagner da Costa Silva (raul.wagner.costa@usp.br).
+/*Copyright © 2016 - Jorge Hideki Motokubo Halker (jorge.halker@usp.br), 	Lucas de Oliveira Pacheco (lucas.oliveira.pacheco@usp.br), Raul Wagner da Costa Silva (raul.wagner.costa@usp.br).
 
 
 This file is part of AcaiOS.
@@ -15,7 +15,7 @@ GNU General Public License for more details.
 
 
 You should have received a copy of the GNU General Public License
-along with AcaiOS.  If not, see <http://www.gnu.org/licenses/>.
+along with AcaiOS.  If not, see <http://www.gnu.org/licenses/>.*/
 
 #ifndef _STDARG_H_
 #define _STDARG_H_
