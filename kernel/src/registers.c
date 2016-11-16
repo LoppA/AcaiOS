@@ -10,7 +10,7 @@ int getCS () {
 
 }
 
-int getDS () () {
+int getDS () {
 
 	int value;
 
