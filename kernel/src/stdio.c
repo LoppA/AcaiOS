@@ -22,10 +22,12 @@ int puts (const char* str) {
 	return n + 1;
 }
 
-int revert (int val, int base) {
+int revert (int val, int base, int* total) {
 	int rval = 0;
+	*total = 0;
 
 	while (val) {
+		*total = *total + 1;
 		rval *= base;
 		rval += val%base;
 		val /= base;
@@ -35,7 +37,7 @@ int revert (int val, int base) {
 }
 
 int print_int (int val) {
-	int rval, n = 0;
+	int rval, total, n = 0;
 
 	if (val == 0) {
 		putchar('0');
@@ -47,9 +49,9 @@ int print_int (int val) {
 		n++;
 	}
 	
-	rval = revert (val, 10);
+	rval = revert (val, 10, &total);
 
-	while (rval) {
+	while (total--) {
 		putchar((rval%10) + '0');
 		rval /= 10;
 		n++;
@@ -58,16 +60,16 @@ int print_int (int val) {
 }
 
 int print_hex (int val) {
-	int rval, n = 0;
+	int rval, total, n = 0;
 
 	if (val == 0) {
 		putchar('0');
 		return 1;
 	}
 
-	rval = revert (val, 16);
+	rval = revert (val, 16, &total);
 
-	while (rval) {
+	while (total--) {
 		int num = (rval%16);
 		n++;
 
@@ -81,16 +83,16 @@ int print_hex (int val) {
 }
 
 int print_bin (int val) {
-	int rval, n = 0;
+	int rval, total, n = 0;
 
 	if (val == 0) {
 		putchar('0');
 		return 1;
 	}
 
-	rval = revert(val, 2);
+	rval = revert(val, 2, &total);
 
-	while (rval) {
+	while (total--) {
 		n++;
 		putchar ((rval%2) + '0');
 		rval /= 2;

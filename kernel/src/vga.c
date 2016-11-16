@@ -17,8 +17,9 @@ void clear_screen() {
     uint32_t i;
     for (i = 0; i < SCREEN_HEIGHT * SCREEN_WIDTH; i++) {
         pos = i;
-        print_character( 0, BLACK, BLACK);
+        print_character(0, BLACK, BLACK);
     }
+	pos = 0;
 }
 
 void print_character (char letter, enum color letterColor, enum color bgColor) {

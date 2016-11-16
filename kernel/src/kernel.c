@@ -1,11 +1,12 @@
 #include "vga.h"
 
 void kernel_main () {
-	int foo = 11;
+	int foo = 10;
+
+	clear_screen();
 
 	printf ("Inteiro: \t%d\n", foo);
 	printf ("Binario: \t%b\n", foo);
-//	printf ("Hexadecimal: \t%x\n", foo);
 
-	abort ();
+	abort();
 }
