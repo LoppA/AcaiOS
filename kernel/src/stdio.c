@@ -37,6 +37,11 @@ int revert (int val, int base) {
 int print_int (int val) {
 	int rval, n = 0;
 
+	if (val == 0) {
+		putchar('0');
+		return 1;
+	}
+
 	if (val < 0) {
 		putchar('-');
 		n++;
@@ -55,6 +60,11 @@ int print_int (int val) {
 int print_hex (int val) {
 	int rval, n = 0;
 
+	if (val == 0) {
+		putchar('0');
+		return 1;
+	}
+
 	rval = revert (val, 16);
 
 	while (rval) {
@@ -72,6 +82,11 @@ int print_hex (int val) {
 
 int print_bin (int val) {
 	int rval, n = 0;
+
+	if (val == 0) {
+		putchar('0');
+		return 1;
+	}
 
 	rval = revert(val, 2);
 
@@ -106,6 +121,8 @@ int vfprintf (const char* format, va_list arg) {
 			} else {
 				return -1;
 			}
+		} else if (*format == '\n') { 
+			putchar('\n');
 		} else {
 			putchar(*format);
 			n++;
