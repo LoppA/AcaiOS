@@ -67,7 +67,7 @@ void print_character (char letter, enum color letterColor, enum color bgColor) {
 	    pos+=2;//posicao se move de 2 em 2 bytes
 	}
 
-    if (pos >= SCREEN_HEIGHT * SCREEN_WIDTH) {
+    if (pos >= 2 * SCREEN_HEIGHT * SCREEN_WIDTH) {
         //limpar tela e voltar pos para 0
         clear_screen();
     }

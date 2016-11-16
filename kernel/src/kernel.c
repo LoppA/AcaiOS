@@ -27,9 +27,10 @@ void kernel_main () {
 	printf ("\n\n\tWelcome to AcaiOS!!\n");
 	printf ("\tThe Operating System as good as Acai.\n");
 
-	printf ("\n\nRegisters \n");
+	printf ("\n\nRegisters:\n");
 
-	printf ("\tcs: 0x%x\n\tds: 0x%x\n\tss: 0x%x\n", getCS(), getDS(), getSS());
-
+	printf ("\nCS:\n\tDec:\t%d\n\tHex:\t0x%x\n\tBin:\t0b%b\n", getCS(), getCS(), getCS());
+	printf ("\nDS:\n\tDec:\t%d\n\tHex:\t0x%x\n\tBin:\t0b%b\n", getDS(), getDS(), getDS());
+	printf ("\nSS:\n\tDec:\t%d\n\tHex:\t0x%x\n\tBin:\t0b%b\n", getSS(), getSS(), getSS());
 	abort();
 }
