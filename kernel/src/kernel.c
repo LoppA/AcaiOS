@@ -1,4 +1,4 @@
-#include "vga.h"
+#include "stdio.h"
 
 void kernel_main () {
 	int foo = 10, bar = 1337;
