@@ -1,4 +1,4 @@
-Goto sanos source index
+//Goto sanos source index
 //
 // stdlib.c
 //
