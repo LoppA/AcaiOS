@@ -1,0 +1,7 @@
+AcaiOS Bootloader Authors:
+	
+	Jorge Hideki Motokubo Halker - jorge.halker@usp.br - 9292945
+
+	Lucas de Oliveira Pacheco - lucas.oliveira.pacheco@usp.br - 9293182
+
+	Raul Wagner da Costa Silva - raul.wagner.costa@usp.br - 9293032
