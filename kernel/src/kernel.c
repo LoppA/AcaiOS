@@ -1,15 +1,16 @@
 #include "stdio.h"
+#include "registers.h"
 
 void kernel_main () {
-	int foo = 10, bar = 1337;
 
 	clear_screen();
 
-	printf ("Inteiro: \t%d\n", foo);
-	printf ("Binario: \t%b\n", foo);
-	printf ("Hexadecimal: \t%x\n\n", foo);
+	printf ("\n\n\tBem vindo ao AcaiOS!!\n");
+	printf ("\tO Sistema Operacional tao bom quanto Acai.\n");
 
-	printf ("Inteiro: \t%d\nBinario: \t%b\nHexadecimal: \t%x\n\n", bar, bar, bar);
+	printf ("\n\nRegistradores: \n");
+
+	printf ("\tcs: 0x%x\n\tds: 0x%x\n\tss: 0x%x\n", getCS(), getDS(), getSS());
 
 	abort();
 }

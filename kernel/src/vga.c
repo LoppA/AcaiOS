@@ -30,7 +30,14 @@ void print_character (char letter, enum color letterColor, enum color bgColor) {
 		pos += 2*(SCREEN_WIDTH - ((pos/2)%SCREEN_WIDTH));
 	} else if (letter == '\t') {
 		set_character_color (BLACK, BLACK);
-		for ( ; pos < (pos/2)%8; pos+=2) {
+
+		if (!(pos%16)) {
+			*(screen_start + pos) = ' ';
+			*(screen_start + pos + 1) = characterColor;
+			pos += 2;
+		}
+
+		for ( ; pos%16; pos+=2) {
 			*(screen_start + pos) = ' ';
 			*(screen_start + pos + 1) = characterColor;
 		}
